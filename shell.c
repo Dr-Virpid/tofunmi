@@ -28,12 +28,13 @@ int main(void)
         }
         if (child_pid == 0)
         {
-            num = getline(buff, &buffsize, stdin);
-            execve(buff[0], buff, envp);
+            num = getline(&buff, &buffsize, stdin);
+            execve(buff, &buff, envp);
         }
         else
             wait(&status);
     }
-    
+return 0;
+}
   
     
