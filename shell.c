@@ -9,7 +9,7 @@ int main(void)
 {
     char *buff;
     char *buffarray[] = {NULL, NULL};
-    /* char *envp[] = {"PATH=/bin", NULL}; */
+    char *envp[] = { NULL};
     size_t buffsize = 1024;
     pid_t child_pid;
     int status, i;
@@ -33,7 +33,7 @@ int main(void)
         {
             printf("nigga$ ");
             getline(&buff, &buffsize, stdin);
-            execve(buffarray[0], buffarray);
+            execve(buffarray[0], buffarray, envp);
             printf("%s\n", buffarray[0]);
         }
         else
