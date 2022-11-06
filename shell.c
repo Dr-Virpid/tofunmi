@@ -10,7 +10,6 @@ int main(void)
     char *buff;
     char *envp[] = {"PATH=/bin", NULL};
     size_t buffsize = 1024;
-    size_t num;
     pid_t child_pid;
     int status, i;
     
@@ -30,7 +29,7 @@ int main(void)
         }
         if (child_pid == 0)
         {
-            num = getline(&buff, &buffsize, stdin);
+            getline(&buff, &buffsize, stdin);
             execve(buff, &buff, envp);
         }
         else
