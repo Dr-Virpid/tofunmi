@@ -7,7 +7,7 @@
 
 int main(void)
 {
-    char *buff;
+    char *buff, str = "/bin/;
     char *buffarray[] = {NULL, NULL};
     char *envp[] = { NULL};
     size_t buffsize = 1024, num;
@@ -34,7 +34,7 @@ int main(void)
             printf("nigga$ ");
             num = getline(&buff, &buffsize, stdin);
             buff[num] = '\0';
-            execve(buffarray[0], buffarray, envp);
+            execve(buff, buffarray, envp);
             printf("%s\n", buffarray[0]);
         }
         else
