@@ -7,7 +7,7 @@
 
 int main(void)
 {
-    char *buff, str = "/bin/;
+    char *buff;
     char *buffarray[] = {NULL, NULL};
     char *envp[] = { NULL};
     size_t buffsize = 1024, num;
