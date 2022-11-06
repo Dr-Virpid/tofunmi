@@ -10,7 +10,7 @@ int main(void)
     char *buff;
     char *buffarray[] = {NULL, NULL};
     char *envp[] = { NULL};
-    size_t buffsize = 1024;
+    size_t buffsize = 1024, num;
     pid_t child_pid;
     int status, i;
     
@@ -32,7 +32,8 @@ int main(void)
         if (child_pid == 0)
         {
             printf("nigga$ ");
-            getline(&buff, &buffsize, stdin);
+            num = getline(&buff, &buffsize, stdin);
+            buff[num] = '\0';
             execve(buffarray[0], buffarray, envp);
             printf("%s\n", buffarray[0]);
         }
