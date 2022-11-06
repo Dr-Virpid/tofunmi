@@ -8,6 +8,7 @@
 int main(void)
 {
     char *buff;
+    char *buffarray[] = {buff, NULL};
     char *envp[] = {"PATH=/bin", NULL};
     size_t buffsize = 1024;
     pid_t child_pid;
@@ -29,8 +30,9 @@ int main(void)
         }
         if (child_pid == 0)
         {
+            printf("nigga$ ");
             getline(&buff, &buffsize, stdin);
-            execve(buff, &buff, envp);
+            execve(buffarray[0], buffarray, envp);
         }
         else
             wait(&status);
