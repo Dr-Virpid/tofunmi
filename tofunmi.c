@@ -4,20 +4,22 @@
 #include <sys/wait.h>
 
 /*
+
  * Write a program that executes the command ls -l /tmp in 5 different child
  * processes. Each child should be created by the same process (the father).
  * Wait for a child to exit before creating a new child.
+ */
 int main(void)
 {
     int status, i;
     pid_t child_pid;
     char *argv[] = {"/bin/ls", "-l", "/tmp/", NULL};
-    char *envp[] = {"PATH=/bin", NULL}
+    char *envp[] = {"PATH=/bin", NULL};
     
     for(i = 0; i < 5; i++)
     {
         child_pid = fork();
-        if (pid == -1)
+        if (child_pid == -1)
         {
             perror("Error:");
             return (1);
