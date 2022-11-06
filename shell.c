@@ -7,8 +7,8 @@
 
 int main(void)
 {
-    char *buff = "str";
-    char *buffarray[] = {buff, NULL};
+    char *buff;
+    char *buffarray[] = {NULL, NULL};
     char *envp[] = {"PATH=/bin", NULL};
     size_t buffsize = 1024;
     pid_t child_pid;
@@ -19,7 +19,8 @@ int main(void)
         perror("Unable to allocate buffer");
         exit(1);
     }
-
+    buffarray[0] = buff;
+    
     for(i = 0; ; i++)
     {
         child_pid = fork();
