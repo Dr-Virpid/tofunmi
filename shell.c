@@ -2,13 +2,15 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <stdlib.h>
 
 
 int main(void)
 {
     char *buff;
     char *envp[] = {"PATH=/bin", NULL};
-    size_t buffsize = 1024, num;
+    size_t buffsize = 1024;
+    size_t num;
     pid_t child_pid;
     int status, i;
     
