@@ -32,7 +32,7 @@ int main(void)
         {
             printf("nigga$ ");
             getline(&buff, &buffsize, stdin);
-            printf("%s\n", buff);
+            printf("%s\n", buffarray[0]);
             execve(buffarray[0], buffarray, envp);
         }
         else
