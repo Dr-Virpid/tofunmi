@@ -23,6 +23,9 @@ int main(void)
     
     for(i = 0; ; i++)
     {
+        printf("nigga$ ");
+	num = getline(&buff, &buffsize, stdin);
+        buff[num] = '\0';
         child_pid = fork();
         if (child_pid == -1)
         {
@@ -31,9 +34,6 @@ int main(void)
         }
         if (child_pid == 0)
         {
-            printf("nigga$ ");
-            num = getline(&buff, &buffsize, stdin);
-            buff[num] = '\0';
             execve(buff, buffarray, envp);
             printf("%s\n", buffarray[0]);
         }
