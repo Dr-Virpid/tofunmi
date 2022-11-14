@@ -3,29 +3,22 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <stdlib.h>
+#include <string.h>
 
-
-int main(void)
+int main(int __attribute__((__unused__)) argc, char __attribute__((__unused__)) **argv, char *envp[])
 {
-    char *buff;
     char *buffarray[] = {NULL, NULL};
-    char *envp[] = { NULL};
-    size_t buffsize = 1024, num;
+    char *tok;
+    size_t num;
     pid_t child_pid;
-    int status, i;
+    int status;
     
-    if((buff = malloc(sizeof(char) * buffsize) ) == NULL)
-    {
-        perror("Unable to allocate buffer");
-        exit(1);
-    }
-    buffarray[0] = buff;
-    
-    for(i = 0; ; i++)
+    while (1)
     {
         printf("nigga$ ");
-	num = getline(&buff, &buffsize, stdin);
-        buff[num] = '\0';
+	num = getline(&tok, &num, stdin);
+	buffarray[0] = tok;	
+	tok = strtok(buffarray[0], " \n\r\t");
         child_pid = fork();
         if (child_pid == -1)
         {
@@ -34,8 +27,8 @@ int main(void)
         }
         if (child_pid == 0)
         {
-            execve(buff, buffarray, envp);
-            printf("%s\n", buffarray[0]);
+            execve(tok, buffarray, envp);
+            printf("%ld\n", num);
         }
         else
             wait(&status);
@@ -43,4 +36,3 @@ int main(void)
 return 0;
 }
   
-    
